@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="base :: head-source">
+<body class="list-back" >
+<nav th:replace="base :: main-navbar"></nav>
+<div class="container p-5 bg-light">
+
+    <div class="emptySpace"></div>
+
+    <a class="text-info" href="/">Show All Employees</a><br/>
+    Department :<span th:text="${employee.department.title}" ></span><br />
+    EmployeeName : <span th:text="${employee.name}"></span><br/>
+    Jobtitle : <span th:text="${employee.jobtitle}"></span><br/>
+    DepartmentName : <span th:text="${employee.departmentname}"></span><br/>
+
+    <a th:href="@{/delete/{id}(id=${employee.id})}">Delete this employee</a>
+
+</div>
+
+</body>
+</html>

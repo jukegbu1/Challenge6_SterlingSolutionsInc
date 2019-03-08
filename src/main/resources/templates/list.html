@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org" lang="en">
+<head th:replace="base :: head-source"></head>
+
+<body>
+<nav th:replace="base :: main-navbar"></nav>
+
+    <a href="/add">Add a Sterling Employee</a><br/>
+    <a href="/adddepartment">Add a Sterling Department</a><br/>
+
+    <div class="space"></div>
+
+    <div class="bg-light bg-background">
+        <h1 class="text-center title-heading p-3">Sterling Solutions Incorporated</h1>
+        <h2 class="text-center">Employee Record Database</h2>
+        <p class="text-center">This is Sterling Solutions 2019 Company Database</p>
+
+    </div>
+
+    <div class="col-md-12 col-md-offset-4 table-background table-hover">
+        <table class="table">
+            <thead class="thead-background">
+
+            <tr>
+                <th>Employee Name</th>
+                <th>Job Title</th>
+                <th>Department Name</th>
+                <th>Employee Image</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee : ${employees}">
+
+                <td th:text="${employee.name}"></td>
+                <td th:text="${employee.jobtitle}"></td>
+                <td th:text="${employee.departmentname}"></td>
+                <td><div  th:if="${employee.headshot} != null">
+                    <img th:src="${employee.headshot}" />
+                    <image class="rounded employee-img" th:src="${employee.headshot}" alt="Pictue a employee" />
+                </div>
+                </td>
+
+                <td>
+                    <a th:href="@{/update/{id}(id=${employee.id})}">Update</a> -
+                    <a th:href="@{/detail/{id}(id=${employee.id})}">Details</a> -
+                    <a th:href="@{/delete/{id}(id=${employee.id})}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br/>
+        <hr/>
+        <br/>
+
+        <div class="space"></div>
+        <h2 class="text-center">Location</h2><br/>
+        <br/><br/>
+
+        <footer th:replace="base :: footer"></footer>
+        <div class="emptySpace"></div>
+    </div>
+
+</div> <!--- End container -->
+
+<div th:replace="base :: scripts"></div>
+</body>
+</html>

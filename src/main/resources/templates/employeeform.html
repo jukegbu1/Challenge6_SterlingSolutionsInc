@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head th:replace="base :: head-source" >
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <head th:replace="base :: head-source">
+<body class="list-back" >
+<nav th:replace="base :: main-navbar"></nav>
+<div class="container p-5 bg-light">
+
+    <div class="emptySpace"></div>
+    <h1 class="text-center">Employee Department Form</h1>
+    <div class="col-md-6 col-md-offset-3">
+        <     action="#"
+              enctype="multipart/form-data"
+              method="post"
+              th:action="@{/process}" th:object="${employee}">
+
+            <input type="hidden" th:field="*{id}" />
+
+            <p>Please Enter a high-res image as your offical Sterling Solutions Inc Employee Database </p>
+            <input type="file" name="file"/><br/>
+
+
+            <label>Employee Name :</label> <input type="text" th:field="*{employeeName}" />
+            <span th:if="${#fields.hasErrors('employeeName')}"
+            th:errors="*{employeeName}"></span><br/>
+
+            <label>Job Title :</label><input type="text" th:field="*{jobTitle}" />
+            <span th:if="${#fields.hasErrors('jobTitle')}"
+            th:errors="*{jobTitle}"></span><br/>
+
+            <label>Department Name</label> :<input type="text" th:field="*{departmentName}" />
+            <span th:if="${#fields.hasErrors('departmentName')}"
+            th:errors="*{departmentName}"></span><br/>
+
+            <label>Sterling Solutions Inc.Departments:</label><select th:field="*{department}" class="form-control input-md">
+            <option th:each="option: ${departments}"
+                    th:value="${option.id}">[[${option.title}]]</option>
+        </select><br/>
+        
+            <input class="btn btn-info btn-sm" type="submit" value="Submit"/>
+
+        </form>
+    </div>
+</div>
+
+    <footer th:replace="base :: footer"></footer>
+    <div class="space"></div>
+
+</div>
+<div th:replace="base :: scripts"></div>
+</body>
+</html>
